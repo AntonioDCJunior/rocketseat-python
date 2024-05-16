@@ -29,9 +29,17 @@ def completar_tarefa(tarefas, indice_tarefa):
     print(f"O status da tarefa {indice_tarefa} foi atualizado para COMPLETADA!")
     return
 
-def deletar_tarefa(tarefas, indice_tarefa):
+def deletar_tarefas_completadas(tarefas):
     deletar_indice_tarefa = int(indice_tarefa) - 1
-    tarefas[deletar_indice_tarefa]
+    for tarefa in tarefas:
+        if tarefa["completada"]:
+           tarefas.remove(tarefa)
+        else:
+            print("Tarefa ainda não completada!")
+    print("Tarefa selecionada deletada!")
+           #print(f"A tarefa {indice_tarefa} foi deletada com sucesso!")
+        #else:
+        #    print("Indice da tarefa inválido!")
     return
 
 tarefas = [] #É iniciada uma lista vazia para ser preenchida conforme a opção escolhida
@@ -50,23 +58,31 @@ while True:
         nome_tarefa = input("Adicione uma tarefa: ")
         adicionar_tarefa(tarefas, nome_tarefa)
     
-    if escolha == "2":
+    elif escolha == "2":
         ver_tarefas(tarefas)
 
-    if escolha == "3":
+    elif escolha == "3":
         ver_tarefas(tarefas)
         indice_tarefa = input("Informe o numero da tarefa para ser atualizada: ")
         novo_nome = input("Informe o novo nome da tarefa: ")
         atualizar_nome_tarefa(tarefas, indice_tarefa, novo_nome)
 
-    if escolha == "4":
+    elif escolha == "4":
         ver_tarefas(tarefas)
         indice_tarefa = input("Informe o nÚmero da tarefa para ser completada: ")
         #novo_status = input("A tarefa foi completada? ")
         completar_tarefa(tarefas, indice_tarefa)
+
+    elif escolha == "5":
+        ver_tarefas(tarefas)
+        indice_tarefa = input("Informe o número da tarefa para ser deletada: ")
+        deletar_tarefas_completadas(tarefas)
         
     elif escolha == "6":
         break
 
     #else:
     #    print("Opção inválida, tente novamente!")
+
+    #Para implementar:
+    #Se selecionar tarefa não completada deve-se exbir uma mensagem informando que a tarefa não foi completada!
